@@ -6,14 +6,22 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    './src/features/*.feature'
   ],
   capabilities: {
     'browserName': 'chrome'
   },
-  directConnect: true,
+  directConnect: false,
   baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  framework: 'custom',
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  cucumberOpts: {    
+    require: ['./src/step-definitions/*.step.ts'],
+    tags: [],    
+    dryRun: false,
+    compiler: []
+    },
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
@@ -23,6 +31,5 @@ exports.config = {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };
