@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  mensaje: string;
+  correo: string;
+
+  validarLogin() {
+    if (this.correo.includes('@')) {
+      this.mensaje = 'Correcto';
+    } else {
+      this.mensaje = 'Incorrecto';
+    }
+  }
 }

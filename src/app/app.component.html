@@ -11,7 +11,7 @@
         <div class="form-group">
 
 
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+          <input type="email" class="form-control" id="inputEmail" [(ngModel)]="correo" placeholder="Email Address" name="email">
 
         </div>
 
@@ -23,14 +23,13 @@
         <div class="forgot">
           <a href="reset.html">Forgot password?</a>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" (click)="validarLogin()" id="btnLogin" class="btn btn-primary">Login</button>
 
       </form>
     </div>
     <p class="botto-text"> Designed by Sunil Rajput</p>
   </div>
-</div>
-
-<div class="alert alert-danger" role="alert">
-  This is a danger alert—check it out!
+  <div class="alert" id="divMessage" [ngClass]="{'alert-primary': mensaje==='Correcto', 'alert-danger': mensaje==='Incorrecto'}" role="alert" ng-if="mensaje">
+    {{mensaje}}
+  </div>
 </div>
